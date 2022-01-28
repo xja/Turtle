@@ -13,7 +13,7 @@ queue = Queue()
 COMMANDS = {'help':['Shows this help'],
             'list':['Lists connected clients'],
             'select':['Selects a client by its index. Takes index as a parameter'],
-            'quit':['Stops current connection with a client. To be used when client is selected'],
+            'quit':['Quit current session with a client. To be used when client is selected'],
             'shutdown':['Shuts server down'],
            }
 
